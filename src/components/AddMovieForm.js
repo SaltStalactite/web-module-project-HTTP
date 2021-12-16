@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const AddMovieForm = () => {
+const AddMovieForm = (props) => {
+    const { setMovies } = props
     const initialValues = {
         title: '',
         director: '',
@@ -17,12 +18,23 @@ const AddMovieForm = () => {
         const value = event.target.value
         setValues({ ...values, [name]: value })
     }
+    const handleSubmit = event => {
+        event.preventDefault()
+        axios.post('http://localhost:9000/api/movies', values)
+            .then(res => {
+                setMovies(res.data)
+                window.location.href = '/movies'
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
 
     return (
         <>
             <div>
                 <div>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div>
                             <div>
                                 <h4>Add Movie</h4>
