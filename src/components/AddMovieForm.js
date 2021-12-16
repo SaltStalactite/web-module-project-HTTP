@@ -11,6 +11,12 @@ const AddMovieForm = () => {
     }
 
     const [values, setValues] = useState(initialValues)
+    console.log(values)
+    const handleChange = (event) => {
+        const name = event.target.name
+        const value = event.target.value
+        setValues({ ...values, [name]: value })
+    }
 
     return (
         <>
@@ -23,28 +29,27 @@ const AddMovieForm = () => {
                             </div>
                             <div>
                                 <label>Title</label>
-                                <input />
+                                <input type='text' name='title' value={values.title} onChange={handleChange} />
                             </div>
                             <div>
                                 <label>Director</label>
-                                <input />
+                                <input type='text' name='director' value={values.director} onChange={handleChange} />
                             </div>
                             <div>
                                 <label>Genre</label>
-                                <input />
+                                <input type='text' name='genre' value={values.genre} onChange={handleChange} />
                             </div>
                             <div>
                                 <label>Metascore</label>
-                                <input />
+                                <input type='text' name='metascore' value={values.metascore} onChange={handleChange} />
                             </div>
                             <div>
                                 <label>Description</label>
-                                <input />
+                                <input type='text' name='description' value={values.description} onChange={handleChange} />
                             </div>
                         </div>
                         <div>
                             <button>Add</button>
-                            <Link />
                         </div>
                     </form>
                 </div>
